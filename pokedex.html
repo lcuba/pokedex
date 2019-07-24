@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pok&#233;dex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/mini_poke_icon.png" />
+    <link rel="stylesheet" href="css/pokedex.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+
+    <div class='row'>
+        <!-- left side buffer with decorative pokeballs -->
+        <div class="col-sm-2" id="left">
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+        </div>
+        <!-- Main centered div -->
+        <div class="col-sm-8" id="center">
+            <nav class="navbar navbar-light">
+                <h2 class="title">Welcome to Pok&#233;dex</h2>
+            </nav>
+            <div class="row" id="second">
+                <div class="col-2"></div>
+                <input class="form-control col-3" type="text" id="dexIn" placeholder="Dex# or Species" autofocus />
+                <div class="col-1"></div>
+                <button class="btn btn-danger col-2" id="pokeRun">Find Pok&#233;mon!</button>
+                <button class="btn btn-light col-2" id="pokeRandom">Surprise Me!</button>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <h2 id="pokeName"></h2>
+            </div>
+            <!-- Sprite display -->
+            <table class="table" id="sprites" hidden=true>
+                <tbody>
+                    <tr>
+                        <td>
+                            <figure>
+                                <img id="frontDefault" />
+                                <figcaption>Front Default</figcaption>
+                            </figure>
+                        </td>
+                        <td id="backDefaultFigure">
+                            <figure>
+                                <img id="backDefault" />
+                                <figcaption>Back Default</figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure>
+                                <img id="frontShiny" />
+                                <figcaption>Front Shiny</figcaption>
+                            </figure>
+                        </td>
+                        <td id="backShinyFigure">
+                            <figure>
+                                <img id="backShiny" />
+                                <figcaption>Back Shiny</figcaption>
+                            </figure>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table containing type, ability, height, and weight values -->
+            <table class="table" id="typeAbilitiesHeightDimensions" hidden=true>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Abilities</th>
+                        <th>Height and Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="type"></td>
+                        <td id="abilities"></td>
+                        <td id="heightWeight"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- CanvasJS Graph -->
+            <div class="row" id="statContainer"></div>
+            <!-- Modals -->
+            <!-- Loading modal -->
+            <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="loadingTitle">Your Pok&#233;mon is on its way...</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="loading-image" src="assets/pokeball.png" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- type information modal -->
+            <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="typeModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="typeTitle">Type Damage Relation Information</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-loading" hidden=true>
+                            <img class="loading-image" src="assets/pokeball.png" />
+                            <span class="loading-text">  Loading...</span>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ability Information Modal -->
+            <div class="modal fade" id="abilityModal" tabindex="-1" role="dialog" aria-labelledby="abilityModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Ability Information</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-loading" hidden=true>
+                            <img class="loading-image" src="assets/pokeball.png" />
+                            <span class="loading-text">  Loading...</span>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- left side buffer with decorative pokeballs -->
+        <div class="col-sm-2" id="right">
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+            <img class='poke-icon' src='assets/pokeball_icon.png' />
+        </div>
+    </div>
+    <script src="js/pokedex.js"></script>
+</body>
+
+</html>

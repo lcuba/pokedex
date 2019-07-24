@@ -1,0 +1,243 @@
+
+/*spinning pokeball animations*/
+.loading-image {
+    width: 200px;
+    height: 200px;
+    -webkit-animation:spin 2.0s linear infinite;
+    -moz-animation:spin 2.0s linear infinite;
+    animation:spin 2.0s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#typeModal .loading-image, #abilityModal .loading-image {
+    width: 80px;
+    height: 80px;
+    -webkit-animation:spin 1.8s linear infinite;
+    -moz-animation:spin 1.8s linear infinite;
+    animation:spin 1.8s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#loadingModal .modal-body {
+    text-align: center;
+}
+
+#right, #left {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 99vh;
+}
+
+#center {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+nav {
+    margin-top: 1.1em;
+    background: rgb(255, 45, 45);
+    border-bottom: 2px solid #999;
+    border-radius: 5px;
+    /*box-shadow: 5px 5px 3px #222;*/
+}
+
+.title {
+    font-size: 3em;
+    color: black;
+    letter-spacing: -1px;
+    margin: auto;
+    font-weight: bold;
+}
+
+#pokeName {
+    color: black;
+    letter-spacing: -1px;
+    margin: auto;
+    font-weight: bold;
+}
+
+#pokeName small {
+    margin-left: .5em;
+    font-style: italic;
+    font-size: .5em;
+}
+
+.poke-icon {
+    width: 3em;
+    height: 3em;
+    margin-top: 2.8em;
+}
+
+#second {
+    margin-top: 1.5em;
+}
+
+#pokeRun {
+    background-color: rgb(255, 45, 45);
+}
+
+#pokeRandom {
+    background-color: rgb(233, 225, 225);
+    color: #222;
+    border: 1px solid #999;
+}
+
+#sprites {
+    text-align: center;
+}
+
+#pokeName {
+    margin-top: 2em;
+}
+
+#typeAbilitiesHeightDimensions {
+    text-align: center;
+}
+
+#abilities span {
+    letter-spacing: -1px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#abilities:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#abilities span:not(:first-child) {
+    margin-right: 1em;
+}
+
+span + small {
+    margin-right: 1em;
+}
+
+#heightWeight span {
+    letter-spacing: -1px;
+    font-weight: bold;
+    margin-right: 1em;
+    font-size: 1.1em;
+}
+
+
+.modal-loading .loading-image {
+    margin-left: 1.5em;
+}
+/* type badges */
+
+#type button, #typeModal .modal-body button, #typeModal .modal-body span {
+    color: #fff;
+}
+
+#typeModal .modal-body button {
+    font-size: 1.2em;
+    display: block;
+    margin-top: 2em;
+}
+
+#typeModal .modal-body h5 {
+    margin-top: 1em;
+    border-top: 1px solid #bbb;
+}
+
+#type:hover, #type button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#normal {
+    background-color: #A8A878;
+    
+}
+
+#fighting {
+    background-color: #C03028;
+    
+}
+
+#poison {
+    background-color: #A040A0;
+    
+}
+
+#fairy {
+    background-color: #EE99AC;
+    
+}
+
+#grass {
+    background-color: #78C850;
+    
+}
+
+#ground {
+    background-color: #E0C068;
+    
+}
+
+#rock {
+    background-color: #B8A038;
+    
+}
+
+#steel {
+    background-color: #B8B8D0;
+    
+}
+
+#dragon {
+    background-color: #7038F8;
+    
+}
+
+#fire {
+    background-color: #F08030;
+    
+}
+
+#ghost {
+    background-color: #705898;
+    
+}
+
+#psychic {
+    background-color: #F85888;
+    
+}
+
+#dark {
+    background-color: #705848;
+    
+}
+
+#water {
+    background-color: #6890F0;
+    
+}
+
+#ice {
+    background-color: #98D8D8;
+    
+}
+
+#flying {
+    background-color: #A890F0;
+    
+}
+
+#electric {
+    background-color: #F8D030;
+    
+}
+
+#bug {
+    background-color: #A8B820;
+    
+}
